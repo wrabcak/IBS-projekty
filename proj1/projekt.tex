@@ -1,0 +1,53 @@
+%============================================================================
+% tento soubor pouzijte jako zaklad
+% (c) 2008 Michal Bidlo
+% E-mail: bidlom AT fit vutbr cz
+%============================================================================
+% kodovanie: iso-8859-2 (zmena prikazem iconv, recode alebo cstocs)
+
+\documentclass[cover]{projekt}
+\usepackage[latin2]{inputenc}
+\usepackage[T1, IL2]{fontenc}
+\usepackage{url}
+\DeclareUrlCommand\url{\def\UrlLeft{<}\def\UrlRight{>} \urlstyle{tt}}
+
+\usepackage{array}
+\usepackage{longtable}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\usepackage{makecell}
+\renewcommand{\arraystretch}{1.45}
+
+\ifx\pdfoutput\undefined % nejedeme pod pdflatexem
+\else
+  \usepackage{color}
+  \usepackage[unicode,colorlinks,hyperindex,plainpages=false,pdftex]{hyperref}
+  \definecolor{links}{rgb}{0.4,0.5,0}
+  \definecolor{anchors}{rgb}{1,0,0}
+  \def\AnchorColor{anchors}
+  \def\LinkColor{links}
+  \def\pdfBorderAttrs{/Border [0 0 0] }  % Bez okrajov okolo odkazov.
+  \pdfcompresslevel=9
+\fi
+
+%Informacie o praci.
+\projectinfo{
+  project=OP,
+  year=2015,
+  title={Sledování GSM a záznamy událostí operátory v ÈR},
+  subject={Odborná práca do predmetu IBS},
+  author={Luká¹ Vrabec}
+}
+\begin{document}
+  	\maketitle
+  	\tableofcontents
+	\input{obsah} % obsah.tex
+	\ifslovak
+	  	\bibliographystyle{czechiso}
+	\else 
+  		\bibliographystyle{plain}
+	\fi
+  	\begin{flushleft}
+ 		\bibliography{literatura} % literatura.bib
+  	\end{flushleft}
+
+\end{document}
