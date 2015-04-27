@@ -50,26 +50,3 @@ Carl pozná kµúè \texttt{Kbc}, a ked¾e \texttt{Kab =  Kbc xor Kab xor h(Nb, Kbs) 
 
 \chapter{Analýza komunikácie BP z rôznych pohµadov subjektov}
 Nasleduje analýza komunikácie jak je uvedené v èlánku od Alvesa-fossa\cite{alves-foss}
-\\\\
-\noindent \textbf{BP z pohµadu subjektu A:}
-
-
-\begin{table}[h]
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Správa}                                     & \textbf{Popis}                       \\ \hline
-\texttt{A1: A: computes Xa = h((A, B, Na), Kas), (A, B, Na)} & A vytvorí správu                     \\ \hline
-\texttt{A2: A?: Xa}                                          & A po¹ele správu                      \\ \hline
-\texttt{A3: ?A: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab}   & A príjme správu		            \\ \hline
-\texttt{A4: A: compute h(Na, Kas)}                           & A vypoèíta správu                    \\ \hline
-\texttt{A5: A: h(Na, Kas) xor (Kab xor h(Na, Kas))}          & A získa kµúè                         \\ \hline
-\texttt{A6: A: decrypt \{A, B, Na\}Kab}                      & A de¹ifruje správu                   \\ \hline
-\end{tabular}
-\end{table}
-
-\\\\
-\noindent \textbf{BP z pohµadu subjektu B:}
-
-\\\\
-\noindent \textbf{BP z pohµadu subjektu C:}
-
