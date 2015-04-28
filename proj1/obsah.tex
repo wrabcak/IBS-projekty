@@ -50,7 +50,7 @@ Carl pozná kµúè \texttt{Kbc}, a ked¾e \texttt{Kab =  Kbc xor Kab xor h(Nb, Kbs) 
 
 \chapter{Analýza komunikácie BP z rôznych pohµadov subjektov}
 Nasleduje analýza komunikácie jak je uvedené v èlánku od Alvesa-fossa\cite{alves-foss}
-\\\\
+
 \noindent \textbf{BP z pohµadu subjektu A:}
 
 
@@ -59,17 +59,56 @@ Nasleduje analýza komunikácie jak je uvedené v èlánku od Alvesa-fossa\cite{alves
 \hline
 \textbf{Správa}                                     & \textbf{Popis}                       \\ \hline
 \texttt{A1: A: computes Xa = h((A, B, Na), Kas), (A, B, Na)} & A vytvorí správu                     \\ \hline
-\texttt{A2: A?: Xa}                                          & A po¹ele správu                      \\ \hline
-\texttt{A3: ?A: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab}   & A príjme správu		            \\ \hline
+\texttt{A2: A->: Xa}                                          & A po¹ele správu                      \\ \hline
+\texttt{A3: ->A: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab}   & A príjme správu		            \\ \hline
 \texttt{A4: A: compute h(Na, Kas)}                           & A vypoèíta správu                    \\ \hline
 \texttt{A5: A: h(Na, Kas) xor (Kab xor h(Na, Kas))}          & A získa kµúè                         \\ \hline
 \texttt{A6: A: decrypt \{A, B, Na\}Kab}                      & A de¹ifruje správu                   \\ \hline
 \end{tabular}
 \end{table}
 
-\\\\
+
 \noindent \textbf{BP z pohµadu subjektu B:}
+\noindent
+\begin{table}[h]
+\scalebox{0.9}{
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Správa}                                                                                                                                                                                                    & \textbf{Popis}                       \\ \hline
+\texttt{B1: B: computes Xb = h((B, C, Nb, Xa), Kbs), (B, C, Nb, Xa)}                                                                                                                                                        & B vytvorí správu                     \\ \hline
+\texttt{B2: B->: Xb}                                                                                                                                                                                                         & B po¹ele správu                      \\ \hline
+\texttt{\begin{tabular}[c]{@{}l@{}}B3: ->B: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,     \\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc\end{tabular}} &\multicolumn{1}{c|}{B príjme správu} \\ \hline
+\texttt{B4: B: compute h(Nb, Kbs)}                                                                                                                                                                                          & B vypoèíta správu                    \\ \hline
+\texttt{B5: B: h(Nb, Kbs) xor (Kab xor h(Nb, Kbs))}                                                                                                                                                                         & B získa kµúè Kab                     \\ \hline
+\texttt{B6: B: decrypt \{B, A, Nb\}Kab}                                                                                                                                                                                     & B de¹ifruje správu                   \\ \hline
+\texttt{B7: B: h(Nb, Kbs) xor (Kbc xor h(Nb, Kbs))}                                                                                                                                                                         & B získa kµúè Kbc                     \\ \hline
+\texttt{B8: B: decrypt \{B, C, Nb\}Kbc}                                                                                                                                                                                     & B de¹ifruje správu                   \\ \hline
+\texttt{B9: B->: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab}                                                                                                                                                                  & B po¹le správu                       \\ \hline
+\end{tabular}}
+\end{table}
 
-\\\\
-\noindent \textbf{BP z pohµadu subjektu C:}
+\begin{table}[h]
+\scalebox{0.9}{
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Správa}                                                                                                                                                                                                                  & \textbf{Popis}                       \\ \hline
+\texttt{C1: C: computes Xc = h((C, S, Nc, Xb), Kcs), (C, S, Nc, Xb)}                                                                                                                                                                     & C vytvorí správu                     \\ \hline
+\texttt{C2: C->: Xc}                                                                                                                                                                                                                       & C po¹ele správu                      \\ \hline
+\texttt{\begin{tabular}[c]{@{}l@{}}C3: ->C: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc,\\ \hspace{10 mm} C, B, Kbc xor h(Nc, Kcs), \{C, B, Nc\}Kbc\end{tabular}} & \multicolumn{1}{c|}{C príjme správu} \\ \hline
+\texttt{C4: C: compute h(NC, Kcs)}                                                                                                                                                                                                        & C vypoèíta správu                    \\ \hline
+\texttt{C5: C: h(Nc, Kcs) xor (Kbc xor h(Nc, Kcs))}                                                                                                                                                                                       & C získa kµúè Kab                     \\ \hline
+\texttt{C6: C: decrypt \{B,C, Nc\}Kbc}                                                                                                                                                                                                    & B de¹ifruje správu                   \\ \hline
+\texttt{\begin{tabular}[c]{@{}l@{}}C7: C->: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\  \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\  \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc\end{tabular}}                                            & C po¹le správy                       \\ \hline
+\end{tabular}}
+\end{table}
 
+\begin{table}[h]
+\scalebox{0.9}{
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Správa}                                                                                                                                                                                                                          & \textbf{Popis}                        \\ \hline
+\texttt{S3: ->S: Xc}                                                                                                                                                                                                                               & S príjme správu                       \\ \hline
+\texttt{\begin{tabular}[c]{@{}l@{}}S1: S: compute: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc,\\\hspace{10 mm} C, B, Kbc xor h(Nc, Kcs), \{C, B, Nc\}Kbc\end{tabular}} & \multicolumn{1}{c|}{S vytvorí správu} \\ \hline                                                                                                                                                                                                        & B de¹ifruje správu                    \\ \hline
+\texttt{\begin{tabular}[c]{@{}l@{}}S2: S->: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc,\\\hspace{10 mm} C, B, Kbc xor h(Nc, Kcs), \{C, B, Nc\}Kbc\end{tabular}}         & S po¹le správy                        \\ \hline
+\end{tabular}}
+\end{table}
