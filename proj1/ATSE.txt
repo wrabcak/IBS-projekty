@@ -1,0 +1,22 @@
+SUMMARY
+  SAFE
+
+DETAILS
+  BOUNDED_NUMBER_OF_SESSIONS
+  TYPED_MODEL
+
+PROTOCOL
+  C:\progra~1\SPAN\testsuite\results\hlpslGenFile.if
+
+GOAL
+  As Specified
+
+BACKEND
+  CL-AtSe
+
+STATISTICS
+
+  Analysed   : 3 states
+  Reachable  : 2 states
+  Translation: 0.01 seconds
+  Computation: 0.00 seconds

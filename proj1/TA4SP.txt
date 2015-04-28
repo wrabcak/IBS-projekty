@@ -1,0 +1,20 @@
+SUMMARY
+   INCONCLUSIVE
+
+DETAILS
+   NOT_SUPPORTED
+
+PROTOCOL
+   C:\progra~1\SPAN\testsuite\results\hlpslGenFile.if
+
+GOAL
+   SECRECY
+
+BACKEND
+   TA4SP
+
+COMMENTS
+   Sorry, currently TA4SP does not support XOR operator
+
+STATISTICS
+   Translation: 0.00 seconds
