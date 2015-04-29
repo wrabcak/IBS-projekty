@@ -48,6 +48,23 @@ Carl pozná kµúè \texttt{Kbc}, a ked¾e \texttt{Kab =  Kbc xor Kab xor h(Nb, Kbs) 
 
 \chapter{Analitycká analýza chovania protokolu}
 
+\begin{table}[h]
+\scalebox{0.6}{
+\begin{tabular}{|c|l|l|}
+\hline
+\multicolumn{1}{|l|}{Krok}                                                                    & Znalosti                                                                                                                                                                                                       & Predpoklady                                                                                                                                                                                                  \\ \hline
+\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Poèiatoèné \\ podminky\end{tabular}}          & \begin{tabular}[c]{@{}l@{}}A: A, B, S, Kas,Na\\ B: B,C,S, Kbs, Nb\\ C: C, S, Kcs, Nc\\ S: S, Kas, Kbs, Kcs\end{tabular}                                                                                        & \begin{tabular}[c]{@{}l@{}}A: S: Kas\\ B: S: Kbs\\ C: S: Kcs\\ S: A: Kas, S:B:Kbs, S:C: Kcs\end{tabular}                                                                                                     \\ \hline
+\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Cieµové\\ podmienky\end{tabular}}             & \begin{tabular}[c]{@{}l@{}}A: Kab\\ B: Kab, Kbc\\ C: Kbc\end{tabular}                                                                                                                                          & \begin{tabular}[c]{@{}l@{}}A: B: Kab\\ B: A: Kab, B: C: Kbc\\ C: B: Kbc\end{tabular}                                                                                                                         \\ \hline
+\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Zakázané\\ cieµové \\ podmienky\end{tabular}} & \begin{tabular}[c]{@{}l@{}}A: Kbs, Kcs, Kbc\\ B: Kas, Kcs\\ C: Kas, Kbs, Kab\end{tabular}                                                                                                                      &                                                                                                                                                                                                              \\ \hline
+1                                                                                             & \begin{tabular}[c]{@{}l@{}}A: A, B, S, Kas, Na\\ B: B, C, S, Kbs, Na, Nb\\ C: C, S, Kcs, Nc\\ S: S, Kas, Kbs, Kcs\end{tabular}                                                                                 & \begin{tabular}[c]{@{}l@{}}A: B: A, Na, A: S: Kas\\ B: S: Kbs\\ C: S: Kcs\\ S: A: Kas, S: B: Kbs, S: C: Kcs\end{tabular}                                                                                     \\ \hline
+2                                                                                             & \begin{tabular}[c]{@{}l@{}}A: A, B, S, Kas,Na\\ B: B, C, S, Kbs,Na, Nb\\ C: C, S, Kcs, A, Na, Nb, Nc\\ S: S, Kas, Kbs, Kcs\end{tabular}                                                                        & \begin{tabular}[c]{@{}l@{}}A: S: Kas, A: B: Na\\ B: S: Kbs, B: C: Na, Nb, A, B\\ C: S: Kcs, S: B: Kbs,\\ S: C: Kcs, S: A: Kas\end{tabular}                                                                   \\ \hline
+3                                                                                             & \begin{tabular}[c]{@{}l@{}}A: A, B, S, Na, Kas\\ B: B, C, S, Kbs,Na, Nb\\ C: A, C, S, Kcs, Na, Nb, Nc\\ S: S, A, B, C, Kas, Kbs, Kcs, Na, Nb, Nc\end{tabular}                                                  & \begin{tabular}[c]{@{}l@{}}A: S: Kas, A: B: Na,\\ B: S: Kbs, B: C: Na, Nb, A, B\\ C: S: Kcs, A, B, C, Na, Nb, Nc\\ S: B: Kbs; S: C: Kcs; S: A: Kas\end{tabular}                                              \\ \hline
+4                                                                                             & \begin{tabular}[c]{@{}l@{}}A: A, B, S, Kas,Na, \\ B: B, C, S, Kbs,Na, Nb\\ C: C, S, A, Kbc, Kcs, Na, Nb, m1, m2, m3, m4\\ S: S, A, B, C, Kas, Kbs, Kcs, Na, Nb, Nc\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}A: S: Kas, A: B: Na,\\ B: S: Kbs, B: C: Na, Nb, A, B\\ C: S: Kcs, A, B, C, Na, Nb, Nc \\ S: B: Kbs, S: C: Kcs, m1, m2, m3, m4, S: A: Kas\end{tabular}                             \\ \hline
+5                                                                                             & \begin{tabular}[c]{@{}l@{}}A: A, B, S, Kas, Na\\ B: B, C, S, Kab, Kbs, Kbc, Na, Nb, m1, m2, m3\\ C: C, A, S, Nc, Kcs, Kbc, Na, Nb, m1, m2, m3, m4\\ S: S, A, B, C, Kas, Kbs, Kcs, Na, Nb, Nc\end{tabular}      & \begin{tabular}[c]{@{}l@{}}A: S: Kas, A: B: Na,\\ B: S: Kbs, B: C: Na, Nb, A, B \\ C: S: Kcs, A, B, C, Na, Nb, Nc, C: B: m1, m2, m3,\\ S: B: Kbs, S: C: Kcs, m1, m2, m3, m4, S: A: Kas\end{tabular}          \\ \hline
+6                                                                                             & \begin{tabular}[c]{@{}l@{}}A: A, B, S, Kas, Kab,Na, m1 \\ B: B, C, S, Kab, Kbs, Kbc,Na, Nb, m1, m2, m3\\ C: C, A, S, Kbc, Kcs, Na, Nb, m1, m2, m3, m4\\ S: S, A, B, C,  Kas, Kbs, Kcs, Na, Nb, Nc\end{tabular} & \begin{tabular}[c]{@{}l@{}}A: S: Kas, A: B: Na\\ B: S: Kbs, B: C: Na, Nb, A, B, B: A: m1 \\ C: S: Kcs, A, B, C, Na, Nb, Nc, C: B: m1, m2, m3,\\ S: B: Kbs, S: C: Kcs, m1, m2, m3, m4, S: A: Kas\end{tabular} \\ \hline
+\end{tabular}}
+\end{table}
+
 \chapter{Analýza komunikácie BP z rôznych pohµadov subjektov}
 Nasleduje analýza komunikácie jak je uvedené v èlánku od Alvesa-fossa\cite{alves-foss}
 
@@ -87,8 +104,9 @@ Nasleduje analýza komunikácie jak je uvedené v èlánku od Alvesa-fossa\cite{alves
 \end{tabular}}
 \end{table}
 
+\noindent \textbf{BP z pohµadu subjektu C:}
 \begin{table}[h]
-\scalebox{0.9}{
+\scalebox{0.8}{
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Správa}                                                                                                                                                                                                                  & \textbf{Popis}                       \\ \hline
@@ -97,18 +115,24 @@ Nasleduje analýza komunikácie jak je uvedené v èlánku od Alvesa-fossa\cite{alves
 \texttt{\begin{tabular}[c]{@{}l@{}}C3: ->C: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc,\\ \hspace{10 mm} C, B, Kbc xor h(Nc, Kcs), \{C, B, Nc\}Kbc\end{tabular}} & \multicolumn{1}{c|}{C príjme správu} \\ \hline
 \texttt{C4: C: compute h(NC, Kcs)}                                                                                                                                                                                                        & C vypoèíta správu                    \\ \hline
 \texttt{C5: C: h(Nc, Kcs) xor (Kbc xor h(Nc, Kcs))}                                                                                                                                                                                       & C získa kµúè Kab                     \\ \hline
-\texttt{C6: C: decrypt \{B,C, Nc\}Kbc}                                                                                                                                                                                                    & B de¹ifruje správu                   \\ \hline
+\texttt{C6: C: decrypt \{B,C, Nc\}Kbc}                                                                                                                                                                                                    & C de¹ifruje správu                   \\ \hline
 \texttt{\begin{tabular}[c]{@{}l@{}}C7: C->: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\  \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\  \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc\end{tabular}}                                            & C po¹le správy                       \\ \hline
 \end{tabular}}
 \end{table}
 
+\noindent \textbf{BP z pohµadu subjektu S:}
+
 \begin{table}[h]
-\scalebox{0.9}{
+\scalebox{0.8}{
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Správa}                                                                                                                                                                                                                          & \textbf{Popis}                        \\ \hline
 \texttt{S3: ->S: Xc}                                                                                                                                                                                                                               & S príjme správu                       \\ \hline
-\texttt{\begin{tabular}[c]{@{}l@{}}S1: S: compute: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc,\\\hspace{10 mm} C, B, Kbc xor h(Nc, Kcs), \{C, B, Nc\}Kbc\end{tabular}} & \multicolumn{1}{c|}{S vytvorí správu} \\ \hline                                                                                                                                                                                                        & B de¹ifruje správu                    \\ \hline
+\texttt{\begin{tabular}[c]{@{}l@{}}S1: S: compute: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc,\\\hspace{10 mm} C, B, Kbc xor h(Nc, Kcs), \{C, B, Nc\}Kbc\end{tabular}} & \multicolumn{1}{c|}{S vytvorí správu} \\ \hline                                                                                                                                                                                                        & S de¹ifruje správu                    \\ \hline
 \texttt{\begin{tabular}[c]{@{}l@{}}S2: S->: A, B, Kab xor h(Na, Kas), \{A, B, Na\}Kab,\\ \hspace{10 mm} B, A, Kab xor h(Nb, Kbs), \{B, A, Nb\}Kab,\\ \hspace{10 mm} B, C, Kbc xor h(Nb, Kbs), \{B, C, Nb\}Kbc,\\\hspace{10 mm} C, B, Kbc xor h(Nc, Kcs), \{C, B, Nc\}Kbc\end{tabular}}         & S po¹le správy                        \\ \hline
 \end{tabular}}
 \end{table}
+
+\chapter{Analýza chovania protkolu pomocou automatického nástroja}
+Pri pou¾ití nástroja \textbf{SPAN} boli pou¾ité 3 z 4 metód. Metódy OFMC, ATSE, TA4SP vyhodnotili zdrojový kód protokolu ako bezpeèný. Bohu¾iaµ grafická reprezentácia týchto metód nebola správne ukonèená, tak¾e
+je mo¾né ¾e pri písaní kódu protokolu pri¹lo k chybe. Metódu SATMC sa mi nepodarilo spusti», nakoµko nástroj SPAN nevygeneroval ¾iadne výsledky.
