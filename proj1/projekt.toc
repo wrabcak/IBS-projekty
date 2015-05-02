@@ -1,2 +1,0 @@
-\select@language {slovak}
-\contentsline {chapter}{\numberline {1}\'Uvod}{3}{chapter.1}
